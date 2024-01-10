@@ -6,9 +6,11 @@ exports.middleWaresGlobal = (req,res,next)=>{
 
 // Middleware que verifica se ocorreu um erro de CSRF e renderiza a página de erro 404 caso tenha ocorrido
 exports.checkCsrfError = (err,req,res,next) =>{
-    if(err && err.code === 'EBADCSRFTOKEN'){
+    if(err){
+        console.log(err)
         return res.render('404')
     }
+    next()
 }
 
 // Middleware que define uma variável local no objeto de resposta com o token CSRF

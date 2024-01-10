@@ -9,7 +9,7 @@ const {middleWaresGlobal,checkCsrfError,csrfMiddleware} = require('./src/middlew
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const csrf = require('csurf');
 
 // Conectando ao banco de dados MongoDB
@@ -21,7 +21,7 @@ mongoose.connect(process.env.connectionStringMODELO)
 }).catch(e =>{console.log(e)});
 
 // Configurando helmet
-app.use(helmet());
+// app.use(helmet());
 
 // Configurando o uso do middleware para receber dados do formulário
 app.use(express.urlencoded({extended:true}))

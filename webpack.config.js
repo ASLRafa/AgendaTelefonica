@@ -1,4 +1,5 @@
 const path = require('path'); // CommonJS
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -22,6 +23,9 @@ module.exports = {
       use: ['style-loader', 'css-loader']
     }]
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  plugins: [
+    new HtmlWebpackPlugin({ template: './src/index.html' })
+  ]
   
 };
