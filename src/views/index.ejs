@@ -1,0 +1,19 @@
+<%- include('includes/head'); %>
+<body>
+
+  <section class="container">
+    <h1>
+      
+      <% numeros.forEach(num =>{ %>
+        <%= num %>
+      <%})%>
+    </h1>
+    <form action="/" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <label for="cliente">cliente</label>
+      <input type="text"name="cliente">
+      <button>submit</button>
+    </form>
+  </section>
+
+<%- include('includes/footer'); %>
