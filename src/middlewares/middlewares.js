@@ -1,6 +1,7 @@
 // Middleware que define uma variável local no objeto de resposta com um valor específico
 exports.middleWaresGlobal = (req,res,next)=>{
-    res.locals.umaVariavelLocal = 'Este é o valor da variável local';
+    res.locals.errors = req.flash('errors');
+    res.locals.success = req.flash('success')
     next();
 }
 
