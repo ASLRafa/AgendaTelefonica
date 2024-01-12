@@ -5,3 +5,7 @@ exports.index = (req, res) => {
 exports.cadastro = (req, res) => {
     res.render('cadastro');
   }
+
+exports.register = (req,res) =>{
+    res.send('Contato cadastrado com sucesso!')
+}
