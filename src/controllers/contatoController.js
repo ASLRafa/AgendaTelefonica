@@ -50,3 +50,10 @@ exports.editIndex = async (req, res) => {
     res.render('cadastro', { contatoedit });
   }
 
+=======
+    res.render('cadastro');
+  }
+
+exports.register = (req,res) =>{
+    res.send('Contato cadastrado com sucesso!')
+}
