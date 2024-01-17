@@ -6,8 +6,30 @@ exports.index = async (req, res) => {
   const lista = new Contato(req.body);
   const contatos = await lista.buscaContatos(id);
   if(!contatos) return res.render('404');
-  console.log(contatos)
   res.render('contato',{contatos});
+}
+
+exports.edit = async(req,res)=>{
+  try {
+    if(!req.params.id) return res.render('404');
+  const contato = new Contato(req.body);
+  await contato.edit(req.params.id);
+  if(contato.errors.length > 0){
+    req.flash('errors',contato.errors);
+    req.session.save(()=>{
+        return res.redirect('back');
+    })
+    return;
+  }
+  req.flash('success','contato editado com sucesso.');
+  req.session.save(()=>{
+      return res.redirect(`/contato/cadastro/${contato.contato._id}`);
+  })
+  } catch (error) {
+    console.log(error);
+    res.render('404')
+  }
+  
 }
 
 exports.cadastro = (req, res) => {
@@ -50,10 +72,13 @@ exports.editIndex = async (req, res) => {
     res.render('cadastro', { contatoedit });
   }
 
-=======
-    res.render('cadastro');
-  }
-
-exports.register = (req,res) =>{
-    res.send('Contato cadastrado com sucesso!')
+exports.deletar = async(req,res) =>{
+  const id = req.params.id;
+  if(!id) return res.render('404');
+  const contato = await Contato.delete(id);
+  if(!contato) return res.render('404');
+  req.flash('success','contato deletado com sucesso.');
+  req.session.save(()=>{
+      return res.redirect(`back`);
+  })
 }

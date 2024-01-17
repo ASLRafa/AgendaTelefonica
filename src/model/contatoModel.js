@@ -35,6 +35,19 @@ class Contato {
         const contatos = await ContatoModel.find({usuario:id}).sort({criadoEm:-1});
         return contatos;
     }
+    async delete(id){
+        if(typeof id !== 'string') return;
+        const contatos = await ContatoModel.findOneAndDelete(id);
+        return contatos;
+    }
+
+    async edit(id){
+        if(typeof id !== 'string') return;
+        this.valida();
+        if(this.errors.length > 0) return;
+        this.contato = await ContatoModel.findByIdAndUpdate(id,this.body,{new:true})
+    }
+
 
     valida() {
         this.cleanUp();
