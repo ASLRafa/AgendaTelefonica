@@ -1,5 +1,4 @@
 const path = require('path'); // CommonJS
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -18,14 +17,7 @@ module.exports = {
           presets: ['@babel/env']
         }
       }
-    }, {
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader']
     }]
   },
-  devtool: 'source-map',
-  plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' })
-  ]
-  
+  devtool: 'source-map'
 };
