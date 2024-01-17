@@ -75,8 +75,9 @@ exports.editIndex = async (req, res) => {
 exports.deletar = async(req,res) =>{
   const id = req.params.id;
   if(!id) return res.render('404');
-  const contato = await Contato.delete(id);
-  if(!contato) return res.render('404');
+  const contato = new Contato(req.body);
+  const contatoDelete = await contato.delete(id);
+  if(!contatoDelete) return res.render('404');
   req.flash('success','contato deletado com sucesso.');
   req.session.save(()=>{
       return res.redirect(`back`);

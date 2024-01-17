@@ -18,7 +18,6 @@ class Contato {
         this.errors = [];
         this.contato = null;
 
-        console.log(this.body)
     }
 
     async register() {
@@ -37,7 +36,7 @@ class Contato {
     }
     async delete(id){
         if(typeof id !== 'string') return;
-        const contatos = await ContatoModel.findOneAndDelete(id);
+        const contatos = await ContatoModel.findOneAndDelete({_id:id});
         return contatos;
     }
 
